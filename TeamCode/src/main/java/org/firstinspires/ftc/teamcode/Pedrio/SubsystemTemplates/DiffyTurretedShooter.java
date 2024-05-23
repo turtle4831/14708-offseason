@@ -91,11 +91,14 @@ public class DiffyTurretedShooter {
 
         rPower = turnPIDF.calculate(getTurretHeading(), angle);
         velocity = flywheelPIDF.calculate(getFlyWheelVelocityMotor(),velocity);
-        if (!fire) {
+        if (fire) {
 
             //the one is a scale factor
             motorA.setVelocity(((-velocity * 1) + rPower) * MAX_RPS_TICKS);
             motorB.setVelocity(((velocity * 1) + rPower) * MAX_RPS_TICKS);
+        }else{
+            motorA.setVelocity(((0) + rPower) * MAX_RPS_TICKS);
+            motorB.setVelocity(((0) + rPower) * MAX_RPS_TICKS);
         }
 
         return turnPIDF.atSetPoint();
