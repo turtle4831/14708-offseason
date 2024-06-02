@@ -39,6 +39,10 @@ public class DiffyTurretedShooter {
         this.motorB = motorB;
         this.turnPIDF = turnPIDF;
         this.flywheelPIDF = flywheelPIDF;
+
+        this.turnPIDF.setTolerance(0.3);
+        this.flywheelPIDF.setTolerance(0.01);
+
     }
     private double scale_number(double unscaled, double toMin,double toMax, double fromMin, double fromMax){
         return (toMax - toMin) * (unscaled - fromMin)/ (fromMax - fromMin) + toMin;
@@ -72,6 +76,8 @@ public class DiffyTurretedShooter {
 
     public boolean AimToPose(@NonNull Pose2d target, Pose2d turretCurrentPose, boolean fire) {
         //returns true if the turret is aimed correctly and is spinning at the correct velocity
+
+
         double x1 = target.getX();
         double y1 = target.getY();
 
@@ -103,4 +109,6 @@ public class DiffyTurretedShooter {
 
         return turnPIDF.atSetPoint();
     }
+
+
 }
