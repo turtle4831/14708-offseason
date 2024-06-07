@@ -3,18 +3,22 @@ package org.firstinspires.ftc.teamcode.Pedrio.Ralph.Commands;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 
+import org.firstinspires.ftc.teamcode.Pedrio.Ralph.Subsystems.Deposit;
 import org.firstinspires.ftc.teamcode.Pedrio.Ralph.Subsystems.Intake;
 
 public class StopIntake extends CommandBase {
     Intake intake;
-    public StopIntake(Intake intake){
+    Deposit deposit;
+    public StopIntake(Intake intake, Deposit deposit){
         this.intake = intake;
-        addRequirements(intake);
+        this.deposit = deposit;
+        addRequirements(intake,deposit);
     }
     @Override
     public void initialize() {
         intake.SetIntakePos(Intake.Position.RELEASE);
         intake.StopIntake();
+        deposit.resetEncoder();
     }
 
     @Override

@@ -33,7 +33,7 @@ public class Intake extends SubsystemBase {
 
     public void StartIntake(){
         robot.Intake.setVelocity(2000);
-        robot.Transfer.set(1.0);
+        robot.Transfer.set(0.5);
     }
     public void StopIntake(){
         robot.Intake.set(0);
